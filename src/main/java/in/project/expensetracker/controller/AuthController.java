@@ -30,6 +30,8 @@ public class AuthController {
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
+        
+        System.out.println("REGISTER ENDPOINT HIT");
 
         return ResponseEntity.ok("User registered successfully");
     }
@@ -50,4 +52,5 @@ public class AuthController {
                 Map.of("token", token)
         );
     }
+
 }
