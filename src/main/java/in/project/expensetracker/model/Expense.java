@@ -10,7 +10,9 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "expenses")
 @Getter @Setter
-@NoArgsConstructor @AllArgsConstructor @Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Expense {
 
     @Id
@@ -22,8 +24,8 @@ public class Expense {
     private String title;
 
     @NotNull(message = "Amount is required")
-    @DecimalMin(value = "0.0", inclusive = false, message = "Amount must be greater than 0")
-    @Digits(integer = 12, fraction = 2, message = "Amount format invalid")
+    @DecimalMin(value = "0.0", inclusive = false)
+    @Digits(integer = 12, fraction = 2)
     @Column(nullable = false, precision = 14, scale = 2)
     private BigDecimal amount;
 
@@ -34,4 +36,8 @@ public class Expense {
     @NotNull(message = "Date is required")
     @Column(nullable = false)
     private LocalDate date;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 }

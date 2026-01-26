@@ -1,60 +1,48 @@
-# Java
-*.class
-*.log
-*.ctxt
+##################################
+# Environment files (SECRETS)
+##################################
+.env
+.env.*
+application-local.yml
+application-local.properties
 
-# Package Files
+##################################
+# Maven / Java
+##################################
+target/
+*.class
 *.jar
 *.war
 *.ear
 
-# Eclipse / STS
-.settings/
-.classpath
-.project
-.springBeans
-.apt_generated/
-.factorypath
-.buildpath
+##################################
+# Logs
+##################################
+*.log
+logs/
 
-# IntelliJ IDEA
+##################################
+# IDE files
+##################################
 .idea/
+.vscode/
 *.iml
 *.ipr
 *.iws
-out/
+.project
+.classpath
+.settings/
+.springBeans
+.apt_generated/
 
-# NetBeans
-nbproject/private/
-build/
-nbbuild/
-dist/
-nbdist/
-.nb-gradle/
-
-# Maven
-target/
-!mvnw
-!/.mvn/wrapper/maven-wrapper.jar
-
-# Gradle (if present)
-.gradle/
-build/
-
-# OS-specific
+##################################
+# OS files
+##################################
 .DS_Store
 Thumbs.db
 
-# Logs
-logs/
-*.log
-*.out
-*.pid
-
-# Application properties/yml (hide credentials)
-src/main/resources/application.yml
-src/main/resources/application.properties
-
+##################################
 # Others
+##################################
 *.swp
 *.swo
