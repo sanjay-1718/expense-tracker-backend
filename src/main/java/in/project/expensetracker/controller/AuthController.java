@@ -13,7 +13,6 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:5173")
 public class AuthController {
 
     private final UserRepository userRepository;
@@ -25,15 +24,18 @@ public class AuthController {
 
         if (userRepository.existsByEmail(user.getEmail())) {
             return ResponseEntity.badRequest()
-                    .body("Email already registered");
+                    .body(Map.of("error", "Email already registered"));
         }
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
+        User savedUser = userRepository.save(user);
         
-        System.out.println("REGISTER ENDPOINT HIT");
+        System.out.println("✅ REGISTER ENDPOINT HIT - User: " + user.getEmail());
 
-        return ResponseEntity.ok("User registered successfully");
+        return ResponseEntity.ok(Map.of(
+            "message", "User registered successfully",
+            "email", savedUser.getEmail()
+        ));
     }
 
     @PostMapping("/login")
@@ -47,10 +49,13 @@ public class AuthController {
         }
 
         String token = jwtUtil.generateToken(user.getEmail());
+        
+        System.out.println("✅ LOGIN SUCCESSFUL - User: " + user.getEmail());
 
-        return ResponseEntity.ok(
-                Map.of("token", token)
-        );
+        return ResponseEntity.ok(Map.of(
+            "token", token,
+            "email", user.getEmail()
+        ));
     }
 
 }

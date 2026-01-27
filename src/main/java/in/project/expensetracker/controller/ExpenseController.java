@@ -12,12 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.util.List;
 
-@CrossOrigin(
-		  origins = {
-		    "http://localhost:5173",
-		    "https://expense-tracker.vercel.app"
-		  }
-		)
+
 @RestController
 @RequestMapping("/api/expenses")
 @RequiredArgsConstructor
@@ -25,14 +20,14 @@ public class ExpenseController {
 
     private final ExpenseService service;
 
-    // 🔐 Create expense for logged-in user
+    // 🔒 Create expense for logged-in user
     @PostMapping
     public ResponseEntity<Expense> create(@Valid @RequestBody Expense expense) {
         Expense created = service.create(expense);
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
     }
 
-    // 🔐 Get expenses ONLY for logged-in user (with optional filters)
+    // 🔒 Get expenses ONLY for logged-in user (with optional filters)
     @GetMapping
     public ResponseEntity<List<Expense>> getExpenses(
             @RequestParam(required = false) String category,
@@ -50,13 +45,13 @@ public class ExpenseController {
         );
     }
 
-    // 🔐 Get single expense (only if it belongs to logged-in user)
+    // 🔒 Get single expense (only if it belongs to logged-in user)
     @GetMapping("/{id}")
     public ResponseEntity<Expense> byId(@PathVariable Long id) {
         return ResponseEntity.ok(service.findById(id));
     }
 
-    // 🔐 Update expense (only if owned by logged-in user)
+    // 🔒 Update expense (only if owned by logged-in user)
     @PutMapping("/{id}")
     public ResponseEntity<Expense> update(
             @PathVariable Long id,
@@ -65,7 +60,7 @@ public class ExpenseController {
         return ResponseEntity.ok(service.update(id, expense));
     }
 
-    // 🔐 Delete expense (only if owned by logged-in user)
+    // 🔒 Delete expense (only if owned by logged-in user)
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         service.delete(id);
