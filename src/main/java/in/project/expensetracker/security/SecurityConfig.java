@@ -59,15 +59,15 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        
-        config.setAllowedOriginPatterns(Arrays.asList("*")); // This allows all origins
 
-        // config.setAllowedOrigins(Arrays.asList(
-        //     "http://localhost:5173",
-        //     "http://localhost:3000",
-        //     "https://expense-tracker-frontend.vercel.app",
-        //     "https://*.vercel.app" // Allow all Vercel preview deployments
-        // ));
+
+         config.setAllowedOrigins(Arrays.asList(
+             "http://localhost:5173",
+             "http://localhost:3000",
+             "https://expense-tracker-frontend.vercel.app",
+             "https://expense-tracker-backend-mci6.onrender.com",
+             "https://*.vercel.app"
+         ));
         
         config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
         config.setAllowedHeaders(Arrays.asList("*"));
