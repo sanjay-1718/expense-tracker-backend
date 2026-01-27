@@ -64,7 +64,7 @@ public class SecurityConfig {
          config.setAllowedOrigins(Arrays.asList(
              "http://localhost:5173",
              "http://localhost:3000",
-             "https://expense-tracker-frontend.vercel.app",
+             "https://expense-tracker-frontend-ten-azure.vercel.app",
              "https://expense-tracker-backend-mci6.onrender.com",
              "https://*.vercel.app"
          ));
