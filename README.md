@@ -173,7 +173,17 @@ jwt:
 - `startDate` (optional) - Filter by start date (format: YYYY-MM-DD)
 - `endDate` (optional) - Filter by end date (format: YYYY-MM-DD)
 
-## 📝 API Documentation
+## Scalability Considerations
+- Modular layered architecture (Controller, Service, Repository)
+- JWT-based stateless authentication enables horizontal scaling
+- Database indexing on user_id and date fields
+- Can be extended with Redis caching and Dockerized deployment
+
+
+## API Documentation
+APIs are documented and tested using Postman.
+The Postman collection is included in the repository.
+
 
 ### Register User
 
